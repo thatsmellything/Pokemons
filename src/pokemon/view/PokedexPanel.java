@@ -14,7 +14,7 @@ public class PokedexPanel extends JPanel
 	private SpringLayout appLayout;
 	
 	private JButton myButton;
-	private JComboBox pokedexDropdown;
+	private JComboBox<String> pokedexDropdown;
 	
 	private JTextField numberField;
 	private JTextField nameField;
@@ -35,13 +35,7 @@ public class PokedexPanel extends JPanel
 	{
 		super();
 		this.appController = appController;
-		
-		numberField = new JTextField("0");
-		nameField = new JTextField("pokename");
-		evolveField = new JTextField("false");
 		attackField = new JTextField("0");
-		enhancementField = new JTextField("0");
-		healthField = new JTextField("0");
 		
 		numberLabel = new JLabel("This pokemon number is");
 		nameLabel = new JLabel("This pokemon health is");
@@ -52,11 +46,25 @@ public class PokedexPanel extends JPanel
 		imageLabel = new JLabel("pokemon goes here");
 		
 		myButton = new JButton("Click here to change the pokevalues");
-		pokedexDropdown = new JComboBox();//stub
 		
+		pokedexDropdown = new JComboBox<String>();//stub
+		
+		nameField = new JTextField("pokename");
+		evolveField = new JTextField("false");
+		enhancementField = new JTextField("0");
+		numberField = new JTextField("0");
+		healthField = new JTextField("0");
+		
+		setupDropdown();
 		setupPanel();
 		setupLayout();
 		setupListeners();
+	}
+	
+	private void setupDropdown() 
+	{
+		DefaultComboBoxModel<String> temp = new DefaultComboBoxModel<String>(app.buildPokedexText());
+		pokedexDropdown.setModel(temp);
 	}
 	
 	private void setupPanel()
@@ -66,12 +74,18 @@ public class PokedexPanel extends JPanel
 		this.add(myButton);
 		this.add(pokedexDropdown);
 		
+		
+		
 		this.add(numberField);
+		
 		this.add(nameField);
+		
 		this.add(evolveField);
-		this.add(attackField);
+		
 		this.add(enhancementField);
+		
 		this.add(healthField);
+		this.add(attackField);
 		
 		this.add(numberLabel);
 		this.add(nameLabel);
@@ -84,8 +98,7 @@ public class PokedexPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		appLayout.putConstraint(SpringLayout.WEST, myButton,174, SpringLayout.WEST, this);
-		appLayout.putConstraint(SpringLayout.SOUTH, myButton,-135, SpringLayout.SOUTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, myButton, 201, SpringLayout.WEST, this);
 	}
 	
 	private void setupListeners()
