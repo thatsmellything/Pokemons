@@ -15,8 +15,8 @@ public class PokedexController
 	public PokedexController()
 	{
 		pokemonList = new ArrayList<Pokemon>();
-		addPokemon();
-		appFrame = new PokedexFrame(this);
+		
+		this.appFrame = new PokedexFrame(this);
 	}
 	
 	private void addPokemon()
@@ -49,7 +49,7 @@ public class PokedexController
 		}
 	}
 	
-	public String[] buildPokemodexText()
+	public String[] buildPokedexText()
 	{
 		String[] names = new String [pokemonList.size()];
 		
