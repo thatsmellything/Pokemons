@@ -21,8 +21,8 @@ public class PokedexController
 	
 	private void addPokemon()
 	{
-		pokemonList.add(new pichu());
-		pokemonList.add(new turtwig());
+		pokemonList.add(new pichu(172, "myPichu"));
+		pokemonList.add(new turtwig(387, "myTurtwig"));
 		
 	}
 	
