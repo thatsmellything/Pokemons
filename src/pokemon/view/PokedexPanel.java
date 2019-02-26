@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class PokedexPanel extends JPanel
 {
 
-	private PokedexController app;
+	private PokedexController appController;
 	
 	private SpringLayout appLayout;
 	
@@ -36,7 +36,7 @@ public class PokedexPanel extends JPanel
 	public PokedexPanel(PokedexController app)
 	{
 		super();
-		this.app = app;
+		this.appController = appController;
 		this.appLayout = new SpringLayout();
 		
 		this.pokemonIcon = new ImageIcon(getClass().getResource("/pokemon/view/images/pokeball.png"));
@@ -91,7 +91,7 @@ public class PokedexPanel extends JPanel
 	
 	private void setupDropdown() 
 	{
-		DefaultComboBoxModel<String> temp = new DefaultComboBoxModel<String>(app.buildPokedexText());
+		DefaultComboBoxModel<String> temp = new DefaultComboBoxModel<String>(appController.buildPokedexText());
 		pokedexDropdown.setModel(temp);
 	}
 	
@@ -120,6 +120,11 @@ public class PokedexPanel extends JPanel
 		
 		imageLabel.setVerticalTextPosition(JLabel.BOTTOM);
 		imageLabel.setHorizontalTextPosition(JLabel.CENTER);
+		
+		JButton saveButton = new JButton("Save Button");
+		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 10, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, changeButton);
+		add(saveButton);
 		
 		
 		
@@ -173,12 +178,35 @@ public class PokedexPanel extends JPanel
 	
 	private void sendDataToController()
 	{
+
+		int index = pokedexDropdown.getSelectedIndex();
 		
-	}
+		if(appController.isInt(attackField.getText()) && appController.isDouble(enhancementField.getText()) && appController.isInt(healthField.getText()))
+		{
+			String [] data = new String[5];
+			
+			//insert code here
+			appController.updatePokemon(index, data);
+		}
+
+	};
+	
 	
 	private void changeImageDisplay(String name)
 	{
-		
+		String path = "/pokemon/view/images/";
+		String defaultName = "pokeball";
+		String extension = ".png";
+		try 
+		{
+			pokemonIcon = new ImageIcon(getClass().getResource(path + name.toLowerCase() + extension));
+		}
+		catch (NullPointerException missingFile)
+		{
+			pokemonIcon = new ImageIcon(getClass().getResource(path + defaultName + extension));
+		}
+		imageLabel.setIcon(pokemonIcon);
+		repaint();
 	}
 	
 	private void setupListeners()
@@ -190,6 +218,15 @@ public class PokedexPanel extends JPanel
 				sendDataToController();
 			}
 		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(Action click)
+			{
+				appController.savePokedex();
+			}
+		});
+				
 		
 		pokedexDropdown.addActionListener(new ActionListener()
 				{

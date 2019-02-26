@@ -11,7 +11,7 @@ public class PokedexController
 	
 	private ArrayList<Pokemon> pokemonList;
 	private PokedexFrame appFrame;
-	
+	private String savefile = "backup.pokemon";
 	public PokedexController()
 	{
 		pokemonList = new ArrayList<Pokemon>();
