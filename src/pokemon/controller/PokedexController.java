@@ -1,6 +1,8 @@
 package pokemon.controller;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class PokedexController
 	
 	private ArrayList<Pokemon> pokemonList;
 	private PokedexFrame appFrame;
-	private String savefile = "backup.pokemon";
+	private String saveFile = "backup.pokemon";
 	public PokedexController()
 	{
 		pokemonList = new ArrayList<Pokemon>();
@@ -97,7 +99,7 @@ public class PokedexController
 			ObjectInputStream input = new ObjectInputStream(inputStream);
 			saved = (ArrayList<Pokemon>) input.readObject();
 			input.close();
-			pokeList = saved;
+			pokemonList = saved;
 		}
 		catch(IOException error)
 		{
