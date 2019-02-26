@@ -22,8 +22,17 @@ public class PokedexController
 	private void addPokemon()
 	{
 		pokemonList.add(new pichu(172, "myPichu"));
+		pokemonList.add(new pikachu(173, "myPikachu"));
 		pokemonList.add(new turtwig(387, "myTurtwig"));
-		
+		pokemonList.add(new grotle(388, "myGrotle"));
+		pokemonList.add(new torterra(388, "myTorterra"));
+		pokemonList.add(new charmander(4, "myCharmander"));
+		pokemonList.add(new charmeleon(5, "myCharmelion"));
+		pokemonList.add(new charizard(6, "myCharizard"));
+		pokemonList.add(new squirtle(7, "mySquirtle"));
+		pokemonList.add(new wartortle(8, "myWartortle"));
+		pokemonList.add(new blastoise(9, "myBlastoise"));
+		pokemonList.add(new mew(151, "myMew"));
 	}
 	
 	public void start()

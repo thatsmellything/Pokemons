@@ -6,6 +6,10 @@ public class mew extends Pokemon implements Psychic
 	{
 		super(kgb);
 	}
+	public mew(int num, String name)
+	{
+		super(num, name);
+	}
 	public boolean KGBBrainwash()
 	{
 		Random rand = new Random();
