@@ -10,6 +10,12 @@ public abstract class Pokemon
 	private int number;
 	private String name;
 	private boolean canEvolve;
+	private boolean kgb;
+	
+	public Pokemon (boolean kgb)
+	{
+		this.kgb = kgb;
+	}
 	
 	public Pokemon (int number, String name)
 	{
