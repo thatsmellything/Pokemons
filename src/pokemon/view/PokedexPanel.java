@@ -118,12 +118,10 @@ public class PokedexPanel extends JPanel
 		this.add(nameLabel);
 		this.add(imageLabel);
 		
-		imageLabel.setVerticalTextPosition(JLabel.BOTTOM);
-		imageLabel.setHorizontalTextPosition(JLabel.CENTER);
+		
 		
 		JButton saveButton = new JButton("Save Button");
-		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 10, SpringLayout.NORTH, this);
-		appLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, changeButton);
+		
 		add(saveButton);
 		
 		
@@ -135,6 +133,10 @@ public class PokedexPanel extends JPanel
 	
 	private void setupLayout()
 	{
+		imageLabel.setVerticalTextPosition(JLabel.BOTTOM);
+		imageLabel.setHorizontalTextPosition(JLabel.CENTER);
+		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 10, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, changeButton);
 		appLayout.putConstraint(SpringLayout.EAST, numberField, -41, SpringLayout.EAST, this);
 		numberField.setHorizontalAlignment(SwingConstants.RIGHT);
 		appLayout.putConstraint(SpringLayout.NORTH, nameField, 50, SpringLayout.NORTH, this);
