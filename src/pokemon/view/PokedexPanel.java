@@ -12,7 +12,7 @@ public class PokedexPanel extends JPanel
 	private PokedexController appController;
 	
 	private SpringLayout appLayout;
-	
+	private JButton saveButton;
 	private JButton changeButton;
 	private JComboBox<String> pokedexDropdown;
 	
@@ -233,10 +233,12 @@ public class PokedexPanel extends JPanel
 		
 		saveButton.addActionListener(new ActionListener()
 		{
-			public void actionPerformed(Action click)
+			public void actionPerformed(ActionEvent click)
 			{
 				appController.savePokedex();
 			}
+
+			
 		});
 				
 		
