@@ -108,7 +108,7 @@ public class PokedexController
 		try
 		{
 			ArrayList<Pokemon> saved = new ArrayList<Pokemon>();
-			FileInputStream inputStream = new FileInput Stream(saveFile);
+			FileInputStream inputStream = new FileInputStream(saveFile);
 			ObjectInputStream input = new ObjectInputStream(inputStream);
 			saved = (ArrayList<Pokemon>) input.readObject();
 			input.close();
