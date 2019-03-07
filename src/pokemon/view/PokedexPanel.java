@@ -1,10 +1,11 @@
+
 package pokemon.view;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import pokemon.controller.PokedexController;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.*;
 
 public class PokedexPanel extends JPanel
 {
@@ -33,7 +34,7 @@ public class PokedexPanel extends JPanel
 	
 	private ImageIcon pokemonIcon;
 	
-	public PokedexPanel(PokedexController app)
+	public PokedexPanel(PokedexController appController)
 	{
 		super();
 		this.appController = appController;
@@ -52,7 +53,7 @@ public class PokedexPanel extends JPanel
 		enhancementField = new JTextField("0");
 		
 		healthField = new JTextField("0");
-		
+		saveButton = new JButton("Save me");
 		
 		
 		
@@ -72,28 +73,30 @@ public class PokedexPanel extends JPanel
 		
 		imageLabel = new JLabel("pokemon goes here", new ImageIcon(PokedexPanel.class.getResource("/pokemon/view/images/pokeball2.png")), JLabel.CENTER);
 		appLayout.putConstraint(SpringLayout.WEST, imageLabel, 52, SpringLayout.WEST, this);
+		appLayout.putConstraint(SpringLayout.SOUTH, imageLabel, -67, SpringLayout.SOUTH, this);
 		
 		
 		changeButton = new JButton("Click here to change the pokevalues");
-		appLayout.putConstraint(SpringLayout.SOUTH, imageLabel, -6, SpringLayout.NORTH, changeButton);
+		appLayout.putConstraint(SpringLayout.WEST, changeButton, 0, SpringLayout.WEST, healthLabel);
+		appLayout.putConstraint(SpringLayout.SOUTH, changeButton, -74, SpringLayout.SOUTH, this);
 		
 		
-		pokedexDropdown = new JComboBox<String>();//stub
+		pokedexDropdown = new JComboBox<String>();
+		appLayout.putConstraint(SpringLayout.NORTH, pokedexDropdown, 16, SpringLayout.SOUTH, imageLabel);
+		appLayout.putConstraint(SpringLayout.WEST, pokedexDropdown, 82, SpringLayout.WEST, this);
+		appLayout.putConstraint(SpringLayout.EAST, pokedexDropdown, -21, SpringLayout.EAST, imageLabel);
 		
 		
 		
 		
-		setupDropdown();
+		
 		setupPanel();
 		setupLayout();
 		setupListeners();
+		setupDropdown();
 	}
 	
-	private void setupDropdown() 
-	{
-		DefaultComboBoxModel<String> temp = new DefaultComboBoxModel<String>(appController.buildPokedexText());
-		pokedexDropdown.setModel(temp);
-	}
+	
 	
 	private void setupPanel()
 	{
@@ -121,6 +124,8 @@ public class PokedexPanel extends JPanel
 		
 		
 		JButton saveButton = new JButton("Save Button");
+		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 6, SpringLayout.SOUTH, changeButton);
+		appLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, changeButton);
 		
 		add(saveButton);
 		
@@ -172,10 +177,12 @@ public class PokedexPanel extends JPanel
 		appLayout.putConstraint(SpringLayout.WEST, attackLabel, 0, SpringLayout.WEST, healthLabel);
 		appLayout.putConstraint(SpringLayout.NORTH, healthLabel, 29, SpringLayout.SOUTH, evolveLabel);
 		appLayout.putConstraint(SpringLayout.WEST, healthLabel, 0, SpringLayout.WEST, numberLabel);
-		appLayout.putConstraint(SpringLayout.WEST, changeButton, 10, SpringLayout.WEST, this);
-		appLayout.putConstraint(SpringLayout.SOUTH, changeButton, -32, SpringLayout.SOUTH, this);
-		appLayout.putConstraint(SpringLayout.NORTH, pokedexDropdown, 1, SpringLayout.NORTH, changeButton);
-		appLayout.putConstraint(SpringLayout.WEST, pokedexDropdown, 4, SpringLayout.EAST, changeButton);
+	}
+	
+	private void setupDropdown() 
+	{
+		DefaultComboBoxModel<String> temp = new DefaultComboBoxModel<String>(appController.buildPokedexText());
+		pokedexDropdown.setModel(temp);
 	}
 	
 	private void sendDataToController()
@@ -187,7 +194,11 @@ public class PokedexPanel extends JPanel
 		{
 			String [] data = new String[5];
 			
-			//insert code here
+			data[0] = attackField.getText();
+			data[1] = enhancementField.getText();
+			data[2] = healthField.getText();
+			data[3] = evolveField.getText();
+			data[4] = nameField.getText();
 			appController.updatePokemon(index, data);
 		}
 
@@ -249,6 +260,7 @@ public class PokedexPanel extends JPanel
 				public void actionPerformed(ActionEvent selection)
 					{
 					String name = pokedexDropdown.getSelectedItem().toString();
+					updateFields(pokedexDropdown.getSelectedIndex());
 					changeImageDisplay(name);
 					}
 				});

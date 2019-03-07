@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pokemon.view.PokedexFrame;
@@ -13,10 +14,11 @@ import pokemon.model.*;
 public class PokedexController
 {
 
-	
+	//data members
 	private ArrayList<Pokemon> pokemonList;
 	private PokedexFrame appFrame;
 	private String saveFile = "backup.pokemon";
+	//constructor
 	public PokedexController()
 	{
 		pokemonList = new ArrayList<Pokemon>();
@@ -24,30 +26,40 @@ public class PokedexController
 		this.appFrame = new PokedexFrame(this);
 	}
 	
-	private void addPokemon()
-	{
-		pokemonList.add(new pichu(172, "myPichu"));
-		pokemonList.add(new pikachu(173, "myPikachu"));
-		pokemonList.add(new turtwig(387, "myTurtwig"));
-		pokemonList.add(new grotle(388, "myGrotle"));
-		pokemonList.add(new torterra(388, "myTorterra"));
-		pokemonList.add(new charmander(4, "myCharmander"));
-		pokemonList.add(new charmeleon(5, "myCharmelion"));
-		pokemonList.add(new charizard(6, "myCharizard"));
-		pokemonList.add(new squirtle(7, "mySquirtle"));
-		pokemonList.add(new wartortle(8, "myWartortle"));
-		pokemonList.add(new blastoise(9, "myBlastoise"));
-		pokemonList.add(new mew(151, "myMew"));
-	}
 	
 	public void start()
 	{
 		
 	}
 	
+	//getters
+	
 	public ArrayList<Pokemon> getPokemonList()
 	{
-		return pokemonList;
+		return this.pokemonList;
+	}
+	
+	public PokedexFrame getFrame()
+	{
+		return appFrame;
+	}
+	
+	//methods
+	
+	private void addPokemon()
+	{
+		pokemonList.add(new pichu(172, "Pichu"));
+		pokemonList.add(new pikachu(173, "Pikachu"));
+		pokemonList.add(new turtwig(387, "Turtwig"));
+		pokemonList.add(new grotle(388, "Grotle"));
+		pokemonList.add(new torterra(388, "Torterra"));
+		pokemonList.add(new charmander(4, "Charmander"));
+		pokemonList.add(new charmeleon(5, "Charmelion"));
+		pokemonList.add(new charizard(6, "Charizard"));
+		pokemonList.add(new squirtle(7, "Squirtle"));
+		pokemonList.add(new wartortle(8, "Wartortle"));
+		pokemonList.add(new blastoise(9, "Blastoise"));
+		pokemonList.add(new mew(151, "Mew"));
 	}
 	
 	public void updatePokemon(int index, String[] data )
@@ -74,17 +86,6 @@ public class PokedexController
 		data[4] = current .isCanEvolve() + "";
 		data[5] = current .getNumber() + "";
 		return data;
-	}
-	
-	public String[] buildPokedexText()
-	{
-		String[] names = new String [pokemonList.size()];
-		
-		for(int index = 0; index < pokemonList.size(); index++)
-		{
-			names[index] = pokemonList.get(index).getName();
-		}
-		return names;
 	}
 	
 	public void savePokedex()
@@ -124,10 +125,18 @@ public class PokedexController
 		}
 	}
 	
-	public PokedexFrame getFrame()
+	
+	public String[] buildPokedexText()
 	{
-		return appFrame;
+		String[] names = new String [pokemonList.size()];
+		
+		for(int index = 0; index < pokemonList.size(); index++)
+		{
+			names[index] = pokemonList.get(index).getName();
+		}
+		return names;
 	}
+	
 	
 	public boolean isInt(String maybeInt)
 	{
@@ -161,8 +170,25 @@ public class PokedexController
 		}
 		
 		return isValid;
-}
+    }
 	
+	public boolean isBoolean(String maybeBool)
+	{
+		boolean isValid = false;
+		
+		
+		try
+		{
+			Boolean.parseBoolean(maybeBool);
+			isValid = true;
+		}
+		catch(NumberFormatException error)
+		{
+			JOptionPane.showMessageDialog(null, "you should type a boolean like true or false");
+		}
+		
+		return isValid;
+	 }
 	
 	
 	
