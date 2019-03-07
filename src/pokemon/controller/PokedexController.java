@@ -54,7 +54,7 @@ public class PokedexController
 		pokemonList.add(new grotle(388, "Grotle"));
 		pokemonList.add(new torterra(388, "Torterra"));
 		pokemonList.add(new charmander(4, "Charmander"));
-		pokemonList.add(new charmeleon(5, "Charmelion"));
+		pokemonList.add(new charmeleon(5, "Charmeleon"));
 		pokemonList.add(new charizard(6, "Charizard"));
 		pokemonList.add(new squirtle(7, "Squirtle"));
 		pokemonList.add(new wartortle(8, "Wartortle"));

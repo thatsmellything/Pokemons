@@ -72,19 +72,19 @@ public class PokedexPanel extends JPanel
 		healthLabel = new JLabel("This pokemon health is");
 		
 		imageLabel = new JLabel("pokemon goes here", new ImageIcon(PokedexPanel.class.getResource("/pokemon/view/images/pokeball2.png")), JLabel.CENTER);
-		appLayout.putConstraint(SpringLayout.WEST, imageLabel, 52, SpringLayout.WEST, this);
-		appLayout.putConstraint(SpringLayout.SOUTH, imageLabel, -67, SpringLayout.SOUTH, this);
+		appLayout.putConstraint(SpringLayout.NORTH, imageLabel, -199, SpringLayout.NORTH, attackField);
+		appLayout.putConstraint(SpringLayout.WEST, imageLabel, 51, SpringLayout.WEST, this);
 		
 		
 		changeButton = new JButton("Click here to change the pokevalues");
-		appLayout.putConstraint(SpringLayout.WEST, changeButton, 0, SpringLayout.WEST, healthLabel);
-		appLayout.putConstraint(SpringLayout.SOUTH, changeButton, -74, SpringLayout.SOUTH, this);
+		appLayout.putConstraint(SpringLayout.NORTH, changeButton, 19, SpringLayout.SOUTH, enhancementField);
+		appLayout.putConstraint(SpringLayout.EAST, changeButton, -55, SpringLayout.EAST, this);
 		
 		
 		pokedexDropdown = new JComboBox<String>();
-		appLayout.putConstraint(SpringLayout.NORTH, pokedexDropdown, 16, SpringLayout.SOUTH, imageLabel);
+		appLayout.putConstraint(SpringLayout.NORTH, pokedexDropdown, 47, SpringLayout.SOUTH, imageLabel);
 		appLayout.putConstraint(SpringLayout.WEST, pokedexDropdown, 82, SpringLayout.WEST, this);
-		appLayout.putConstraint(SpringLayout.EAST, pokedexDropdown, -21, SpringLayout.EAST, imageLabel);
+		appLayout.putConstraint(SpringLayout.EAST, pokedexDropdown, -162, SpringLayout.WEST, changeButton);
 		
 		
 		
@@ -124,7 +124,7 @@ public class PokedexPanel extends JPanel
 		
 		
 		JButton saveButton = new JButton("Save Button");
-		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 6, SpringLayout.SOUTH, changeButton);
+		appLayout.putConstraint(SpringLayout.NORTH, saveButton, 9, SpringLayout.SOUTH, changeButton);
 		appLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, changeButton);
 		
 		add(saveButton);
